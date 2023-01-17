@@ -1,0 +1,42 @@
+{
+    "builders": [
+      {
+        "type": "googlecompute",
+        "account_file": "{{user `key`}}",
+        "project_id": "{{user `project`}}",
+        "instance_name": "homolog-debian-11-docker",
+        "image_name": "debian-11-uptime-docker",
+        "source_image": "debian-11-bullseye-v20221206",
+        "ssh_username": "packer",
+        "zone": "{{user `zone`}}"
+      }
+    ],
+    "provisioners": [
+     {
+       "type": "shell",
+       "scripts": [
+          "./install-docker.sh"
+         ]
+       },
+
+      {
+        "type": "shell",
+        "inline": [
+          "sudo mkdir /bwg-uptime",
+          "sudo mkdir /bwg-uptime/volume"
+        
+        ]
+      },
+
+      {
+        "type": "file",
+        "source": "./config-files",
+        "destination": "/tmp"
+      },
+
+      {
+        "type": "shell",
+        "inline": ["sudo mv -f /tmp/config-files /bwg-uptime"]
+      }
+       ]  
+  }

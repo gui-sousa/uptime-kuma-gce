@@ -1,0 +1,15 @@
+uptime-plano.log
+adfs-dev.json
+**/.terraform/*
+*.tfstate.lock.info
+crash.log
+crash.*.log
+.terraform.lock.hcl
+*.json:Zone.Identifier
+terraform.tfstate
+terraform.tfstate.backup
+log-pipeline.md
+/dist
+**/cert/*
+uptime-gce-plan.log
+/cert
