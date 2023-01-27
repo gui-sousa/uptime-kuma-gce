@@ -3,11 +3,11 @@ variable "vm" {
 }
 
 variable "zone" {
-  default = "us-central1-c"
+  default = "us-east1-b"
 }
 
 variable "region" {
-  default = "us-central1"
+  default = "us-east1"
 }
 
 variable "project" {

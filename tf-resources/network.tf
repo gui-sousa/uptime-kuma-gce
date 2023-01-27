@@ -12,7 +12,7 @@ resource "google_compute_subnetwork" "subnet_uptime" {
 
 }
 
-resource "google_compute_router" "nat-uptime-router" {
+/*resource "google_compute_router" "nat-uptime-router" {
   project = var.project
   name    = "nat-uptime-router"
   network = google_compute_network.vpc_uptime.id
@@ -30,7 +30,7 @@ module "cloud_router" {
   nats = [{
     name = "nat-uptime-gateway"
   }]
-}
+}*/
 
 resource "google_compute_firewall" "rules" {
   project = var.project

@@ -1,7 +1,7 @@
 resource "google_compute_instance" "uptime" {
   project      = var.project
   zone         = var.zone
-  name         = "uptime-test"
+  name         = "bee-uptime"
   machine_type = var.vm
   boot_disk {
     initialize_params {
@@ -13,8 +13,18 @@ resource "google_compute_instance" "uptime" {
     subnetwork = google_compute_subnetwork.subnet_uptime.id
   }
 
-  metadata_startup_script = "cd /bwg-uptime/config-files/ && docker-compose up -d"
+  /*lifecycle {
+    create_before_destroy = true
+  }*/
+
+  metadata_startup_script = <<-EOF
+  cd /bwg-uptime/config-files/
+  sudo wget -L https://raw.githubusercontent.com/gui-sousa/uptime-kuma-gce/master/pkr-deploy/config-files/docker-compose.yaml
+  docker-compose up -d
+  EOF
 }
+
+
 
 /*resource "null_resource" "uptime-delete-image" {
   provisioner "local-exec" {
